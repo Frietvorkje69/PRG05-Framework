@@ -1,4 +1,5 @@
-@extends('layouts.web')
+@extends('layouts.app')
+
 @section('title', 'About')
 @section('content')
     @include('partials.header-hero', ['heroText' => 'About'])

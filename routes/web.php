@@ -20,3 +20,7 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::get('/about', [AboutmeController::class, 'show'])->name('about');
 Route::get('/products', [IndexController::class, 'show'])->name('products');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

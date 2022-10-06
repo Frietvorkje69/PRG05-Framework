@@ -1,9 +1,24 @@
-@extends('layouts.web')
-@section('title', 'Home')
-@section('content')
-    @include('partials.header-hero', ['heroText' => 'Home'])
-    <h1>{{$title}}</h1>
-    <p>{{$text}}</p>
-    <a href="{{route('about')}}">About</a>
-@endsection
+@extends('layouts.app')
 
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('Welcome to the epic site!') }}
+                        <a href="{{route('about')}}">About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
