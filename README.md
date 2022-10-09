@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/Frietvorkje69/PRG05-Framework/blob/main/resources/img/luke.png?raw=true" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://youtu.be/GFi3yzPXiPM" target="_blank"><img src="https://github.com/Frietvorkje69/PRG05-Framework/blob/main/resources/img/luke.png?raw=true" width="300" alt="drawing of my face"></a></p>
 
 ## About PRG05-Framework
 
