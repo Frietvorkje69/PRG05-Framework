@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Home')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,6 +16,8 @@
 
                     {{ __('Welcome to the epic site!') }}
                         <a href="{{route('about')}}">About</a>
+                        <a href="{{route('products')}}">Products</a>
+                        <a href="{{route('users')}}">Users</a>
                 </div>
             </div>
         </div>

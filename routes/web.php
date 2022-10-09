@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\AboutmeController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
-Route::get('/about', [AboutmeController::class, 'show'])->name('about');
-Route::get('/products', [IndexController::class, 'show'])->name('products');
-
+Route::get('/home', [HomeController::class, 'show'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutmeController::class, 'show'])->name('about');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/users', [UserController::class, 'index'])->name('users');
+
+## Create
+Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+Route::post('/products/store', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+
+## Update
+Route::get('/products/store/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+Route::post('/products/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
+
+## Delete
+Route::get('/products/delete', [App\Http\Controllers\ProductController::class, 'delete'])->name('products.delete');
+
+
