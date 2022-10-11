@@ -13,6 +13,7 @@
                         <p>{{$product->description}}</p>
                     </div>
                 </div>
+                <br>
                 <p><a href="/products">Return to products</a></p>
             </div>
         </div>

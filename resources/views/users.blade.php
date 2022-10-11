@@ -6,7 +6,7 @@
             <div class="mb-4 col-6">
                 <h2>Admin - Users</h2>
                 <p>List of registered users.</p>
-                <table class="table table-bordered">
+                <table class="table table-responsive table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
