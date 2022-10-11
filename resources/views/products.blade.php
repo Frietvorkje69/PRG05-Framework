@@ -2,26 +2,22 @@
 @section('title', 'Products')
 @section('content')
     <div class="container">
-        <h2>List of Products</h2>
-        <p>These are the available products.</p>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($products as $product)
-                <tr>
-                    <td>{{ $product->title }}</td>
-                    <td>{{ $product->price }}</td>
-                    <td>{{ $product->description }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <a href="{{route('products.create')}}">Add new product</a>
+        <div class="row justify-content-center">
+            <div class="mb-4 col-6">
+                <h2>List of Products</h2>
+                <a href="{{route('products.create')}}">Add new product</a>
+                <p>These are the available products.</p>
+                @foreach($products as $product)
+                    <div class="card">
+                        <div class="card-header"><h1><a href="/products/{{$product->id}}">{{$product->title}}</a></h1>
+                        </div>
+                        <div class="card-body">
+                            <p>{{$product->description}}</p>
+                        </div>
+                    </div>
+                    <br>
+                @endforeach
+            </div>
+        </div>
     </div>
 @endsection

@@ -12,11 +12,8 @@ class ProductController extends Controller
         return view('products')->with('products', $products);
     }
 
-    public function show(int $id) {
-        $product = new Product();
-        $product->title = 'Phone';
-        $product->price = 1050;
-        $product->description = 'een hele leuke phone';
+    public function show($id) {
+        $product = Product::find($id);
         return view('product.show', compact('product'));
     }
 
@@ -24,13 +21,21 @@ class ProductController extends Controller
         return view('product.create');
     }
 
-    public function store (Request $request) {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'price' => ['required|numeric']
-        ]);
+    public function store(Request $request){
+        //Merge request to data
+        $data = $request->all();
+        $request->merge($data);
 
+        //Validate request
+        $this->validate($request,
+            [
+                'title' => 'bail|required|unique:products|max:255',
+                'price' => 'bail|required|numeric',
+                'description' => 'nullable'
+            ]);
+        //Add and redirect
+        Product::create($request->all());
+        return redirect('/products');
     }
 
     public function delete () {

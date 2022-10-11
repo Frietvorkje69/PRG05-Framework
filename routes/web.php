@@ -18,23 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
-Route::get('/home', [HomeController::class, 'show'])->name('home');
-
 Auth::routes();
 
 Route::get('/about', [AboutmeController::class, 'show'])->name('about');
-Route::get('/products', [ProductController::class, 'index'])->name('products');
-Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::resource('/products', ProductController::class)->names('products');
+Route::resource('/users', UserController::class)->names('users');
 
-## Create
-Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
-Route::post('/products/store', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
-
-## Update
-Route::get('/products/store/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
-Route::post('/products/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
-
-## Delete
-Route::get('/products/delete', [App\Http\Controllers\ProductController::class, 'delete'])->name('products.delete');
 
 

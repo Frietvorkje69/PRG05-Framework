@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function getTotalPriceAttribute() {
-        return $this->price * 1.21;
-    }
+    protected $fillable = [
+        'title', 'price', 'description'
+    ];
 }

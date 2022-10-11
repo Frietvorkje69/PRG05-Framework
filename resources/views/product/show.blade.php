@@ -1,10 +1,20 @@
-@extends('layouts.web')
-@section('title', 'About')
+@extends('layouts.app')
+@section('title', 'Product')
+{{-- Show product.--}}
 @section('content')
-    @include('partials.header-hero', ['heroText' => 'Product'])
-    <h1>Product informatie:</h1>
-    <h2>Details {{$product->title}}</h2>
-    <p>{{$product->price}}</p>
-    <p>Met btw {{$product->total_price}}</p>
-    <a href="{{route('home')}}">Home</a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header"><h1>{{$product->title}}</h1></div>
+                    <div class="card-body">
+                        <h3><bold>Price: </bold>€{{$product->price}}</h3>
+                        <h3>Description:</h3>
+                        <p>{{$product->description}}</p>
+                    </div>
+                </div>
+                <p><a href="/products">Return to products</a></p>
+            </div>
+        </div>
+    </div>
 @endsection

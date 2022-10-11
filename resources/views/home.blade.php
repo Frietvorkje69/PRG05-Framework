@@ -16,8 +16,8 @@
 
                     {{ __('Welcome to the epic site!') }}
                         <a href="{{route('about')}}">About</a>
-                        <a href="{{route('products')}}">Products</a>
-                        <a href="{{route('users')}}">Users</a>
+                        <a href="{{ url('/products') }}">Products</a>
+                        <a href="{{ url('/users') }}">Users</a>
                 </div>
             </div>
         </div>
