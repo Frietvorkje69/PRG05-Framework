@@ -38,8 +38,37 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
-    public function delete () {
-        return view('product.delete');
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        return view('product.edit', compact('product'));
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $this->validate($request,
+            [
+                'id' => 'bail|required|exists:products',
+                'title' => 'bail|required|max:255',
+                'price' => 'bail|required|numeric',
+                'description' => 'nullable'
+            ]);
+        $product = Product::find($validated['id']);
+        $product->title = $validated['title'];
+        $product->price = $validated['price'];
+        $product->description = $validated['description'];
+        $product->save();
+        return redirect(route('products.show', $product->id));
+    }
+
+    public function destroy(Request $request)
+    {
+        $validated = $this->validate($request,
+            [
+                'id' => 'bail|required|exists:products'
+            ]);
+        Product::destroy($validated['id']);
+        return redirect('/products');
     }
 
 }

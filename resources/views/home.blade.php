@@ -13,7 +13,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
                         {{ __('Welcome to the epic site!') }}
                         <div>
                             <a href="{{route('about')}}">About</a>

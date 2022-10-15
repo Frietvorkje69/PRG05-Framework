@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AboutmeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
+Route::get('/home', [HomeController::class, 'show'])->name('home');
 Auth::routes();
 
-Route::get('/about', [AboutmeController::class, 'show'])->name('about');
+Route::get('/about', [AboutController::class, 'show'])->name('about');
 Route::resource('/products', ProductController::class)->names('products');
 Route::resource('/users', UserController::class)->names('users');
 

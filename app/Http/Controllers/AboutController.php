@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AboutController extends Controller
 {
     public function show()
     {
         $title = "Dit is een titel.";
         $text = "Dit is een stukje test.";
-        return view('home', compact('title', 'text'));
+        return view('about', compact('title', 'text'));
     }
 }

@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="mb-4 col-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-primary">
                         <h2>Add a new product</h2>
                     </div>
                     <div class="card-body">
@@ -22,7 +22,7 @@
                                            type="text"
                                            value="{{old("title")}}"
                                            placeholder="Title of product"
-                                           class="@error("title") is-invalid @enderror">
+                                           class="input-group input-group-text @error("title") is-invalid @enderror">
                                     @error('title')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -38,7 +38,7 @@
                                            min="0.0"
                                            step="0.01"
                                            placeholder="Price of product"
-                                           class="@error("price") is-invalid @enderror">
+                                           class="input-group input-group-text @error("price") is-invalid @enderror">
                                     @error("price")
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -53,7 +53,7 @@
                                            type="text"
                                            value="{{old("description")}}"
                                            placeholder="Description of product"
-                                           class="@error("description") is-invalid @enderror">
+                                           class="input-group input-group-text @error("description") is-invalid @enderror">
                                     @error("description")
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
