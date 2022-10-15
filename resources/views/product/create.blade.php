@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Add new product')
+@section('title', 'Add Product')
 
 @section('content')
     {{-- Create a new product.--}}
