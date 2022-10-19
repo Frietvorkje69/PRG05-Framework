@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Add Product')
+@section('title', 'Add Category')
 @section('content')
     {{-- Create a new product.--}}
     <div class="container">
@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-body">
 
-                        <form action="/products" method="POST">
+                        <form action="/categories" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="mb-4">
@@ -77,5 +77,3 @@
             </div>
         </div>
 @endsection
-
-

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -24,6 +25,7 @@ Auth::routes();
 Route::get('/about', [AboutController::class, 'show'])->name('about');
 Route::resource('/products', ProductController::class)->names('products');
 Route::resource('/users', UserController::class)->names('users');
+Route::resource('/categories', CategoryController::class)->names('categories');
 
 
 

@@ -13,7 +13,8 @@
                 <p>These are the available products.</p>
                 @foreach($products as $product)
                     <div class="card">
-                        <div class="card-header"><h1><a href="/products/{{$product->id}}" class="link page-link">{{$product->title}}</a></h1>
+                        <div class="card-header"><h1><a href="/products/{{$product->id}}"
+                                                        class="link page-link">{{$product->title}}</a></h1>
                             @can('update', $product)
                                 <a class="btn btn-primary" href="{{route('products.edit', $product->id)}}">Edit</a>
                             @endcan
