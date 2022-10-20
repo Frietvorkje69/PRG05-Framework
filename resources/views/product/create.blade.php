@@ -69,7 +69,7 @@
                                 </div>
                             @endif
                             <div class="mb4">
-                                <input type="submit" value="Add" class="btn btn-primary">
+                                <input type="submit" value="Add product" class="btn btn-primary">
                             </div>
                         </form>
                     </div>

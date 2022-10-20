@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title', 'Add Category')
 @section('content')
-    {{-- Create a new product.--}}
+    {{-- Create a new category.--}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="mb-4 col-6">
                 <div class="card">
                     <div class="card-header bg-primary">
-                        <h2>Add a new product</h2>
+                        <h2>Add a new category</h2>
                     </div>
                     <div class="card-body">
 
@@ -15,30 +15,14 @@
                             @csrf
                             <div class="row">
                                 <div class="mb-4">
-                                    <label for="title" class="form-label">Title: </label>
-                                    <input id="title"
-                                           name="title"
+                                    <label for="name" class="form-label">Name: </label>
+                                    <input id="name"
+                                           name="name"
                                            type="text"
-                                           value="{{old("title")}}"
-                                           placeholder="EG: A gigantic apple pie."
-                                           class="input-group input-group-text @error("title") is-invalid @enderror">
-                                    @error('title')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="mb-4">
-                                    <label for="price">Price: </label>
-                                    <input id="price"
-                                           name="price"
-                                           type="number"
-                                           min="0.0"
-                                           step="0.01"
-                                           placeholder="EG: 13."
-                                           class="input-group input-group-text @error("price") is-invalid @enderror">
-                                    @error("price")
+                                           value="{{old("name")}}"
+                                           placeholder="EG: Category 420"
+                                           class="input-group input-group-text @error("name") is-invalid @enderror">
+                                    @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -51,7 +35,7 @@
                                            name="description"
                                            type="text"
                                            value="{{old("description")}}"
-                                           placeholder="EG: It's very big and pie-y."
+                                           placeholder="EG: It's catergorizing."
                                            class="input-group input-group-text @error("description") is-invalid @enderror">
                                     @error("description")
                                     <div class="alert alert-danger">{{ $message }}</div>

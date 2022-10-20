@@ -16,14 +16,16 @@
                                                             href="/categories/{{$category->id}}">{{$category->name}}</a>
                                 </h1>
                                 @can('update', $category)
-                                    <a class="btn btn-primary" href="/categories/{{$category->id}}/edit">Edit</a>
+                                    <a class="btn btn-primary" href="/categories/{{$category->id}}/edit">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
                                 @endcan
                             </div>
                             <div class="card-body">
                                 <p>{{$category->description}}</p>
-                                @foreach($category->products as $product)
-                                    <p><a href="/products/{{$product->id}}">{{$product->name}}</a></p>
-                                @endforeach
+{{--                                @foreach($category->products as $product)--}}
+{{--                                    <p><a href="/products/{{$product->id}}">{{$product->name}}</a></p>--}}
+{{--                                @endforeach--}}
                             </div>
                         </div>
                         <br>

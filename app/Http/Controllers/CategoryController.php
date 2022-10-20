@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->authorizeResource(Category::class, Category::class);
-//    }
+    public function __construct()
+    {
+        $this->authorizeResource(Category::class, Category::class);
+    }
 
 
     public function index() {
@@ -37,7 +37,7 @@ class CategoryController extends Controller
         //Validate request
         $this->validate($request,
             [
-                'name' => 'bail|required|unique:category|max:255',
+                'name' => 'bail|required|unique:categories|max:255',
                 'description' => 'nullable'
             ]);
         //Add and redirect
@@ -57,8 +57,8 @@ class CategoryController extends Controller
     {
         $validated = $this->validate($request,
             [
-                'id' => 'bail|required|exists:category',
-                'name' => 'bail|required|unique:category|max:255',
+                'id' => 'bail|required|exists:categories',
+                'name' => 'bail|required|unique:categories|max:255',
                 'description' => 'nullable'
             ]);
         $category = Category::find($validated['id']);
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     {
         $validated = $this->validate($request,
             [
-                'id' => 'bail|required|exists:category'
+                'id' => 'bail|required|exists:categories'
             ]);
         Category::destroy($validated['id']);
         return redirect('/categories');

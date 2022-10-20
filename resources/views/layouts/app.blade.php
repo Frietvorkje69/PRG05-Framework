@@ -12,8 +12,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/c7b1d33b1c.js" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -73,6 +76,8 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
+{{--                                    <a class="dropdown-item" href="{{ route('users.edit') }}"></a>--}}
                                 </div>
                             </li>
                         @endguest

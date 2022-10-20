@@ -7,10 +7,29 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Product::class, Product::class);
+    }
+
     public function index() {
         $products = Product::all();
         return view('products')->with('products', $products);
     }
+
+//    public function search(Request $request){
+//        // Get the search value from the request
+//        $search = $request->input('search');
+//
+//        // Search in the title and body columns from the posts table
+//        $product = Product::query()
+//            ->where('title', 'LIKE', "%{$search}%")
+//            ->get();
+//
+//        // Return the search view with the results compacted
+//        return view('products', compact('product'));
+//    }
+
 
     public function show($id) {
         $product = Product::find($id);
