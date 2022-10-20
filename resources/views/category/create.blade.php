@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="mb-4 col-6">
                 <div class="card">
-                    <div class="card-header bg-primary">
+                    <div class="card-header bg-info">
                         <h2>Add a new category</h2>
                     </div>
                     <div class="card-body">

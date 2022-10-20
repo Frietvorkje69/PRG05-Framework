@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-primary">
+                    <div class="card-header bg-secondary">
                         <h1>Edit product</h1>
                     </div>
                     <div class="card-body">

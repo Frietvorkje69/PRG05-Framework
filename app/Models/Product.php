@@ -13,18 +13,17 @@ class Product extends Model
         'title', 'price', 'description'
     ];
 
-    public function products(){
+    public function categories(){
         return $this->belongsToMany(Category::class);
     }
 
-    public static function search($request)
-    {
-        $products = Product::query();
-
-        if (isset($request['search'])) {
-            $products = $products->where('title', 'LIKE', '%'.$request['search'].'%');
-        }
-
-        return $products->paginate(1);
-    }
+//    public static function search($request): \LaravelIdea\Helper\App\Models\_IH_Product_C|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Pagination\LengthAwarePaginator|array
+//    {
+//        $products = Product::query();
+//
+//        if (isset($request['search'])) {
+//            $products = $products->where('title', 'LIKE', '%'.$request['search'].'%');
+//        }
+//        return $products->paginate(5);
+//    }
 }

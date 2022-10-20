@@ -41,6 +41,9 @@
                             <a class="nav-link" href="{{ url('/users') }}">Users</a>
                         </div>
                         <div>
+                            <a class="nav-link" href="{{ url('/categories') }}">Categories</a>
+                        </div>
+                        <div>
                             <a class="nav-link" href="{{ url('/about') }}">About</a>
                         </div>
                     </ul>
@@ -76,8 +79,9 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-
-{{--                                    <a class="dropdown-item" href="{{ route('users.edit') }}"></a>--}}
+{{--                                    <a class="btn btn-primary" href="{{route('users.edit', $user->id)}}">--}}
+{{--                                        <i class="fa fa-pencil" aria-hidden="true"></i>--}}
+{{--                                    </a>--}}
                                 </div>
                             </li>
                         @endguest

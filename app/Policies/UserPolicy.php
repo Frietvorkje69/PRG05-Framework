@@ -20,42 +20,42 @@ class UserPolicy
 
     public function viewAny(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::denyAsNotFound();
     }
 
 
     public function view(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::denyAsNotFound();
     }
 
 
     public function create(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::denyAsNotFound();
     }
 
 
     public function update(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::allow();
     }
 
 
     public function delete(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::allow();
     }
 
 
     public function restore(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::denyAsNotFound();
     }
 
 
     public function forceDelete(User $user): Response
     {
-        return Response::denyWithStatus(404);
+        return Response::denyAsNotFound();
     }
 }

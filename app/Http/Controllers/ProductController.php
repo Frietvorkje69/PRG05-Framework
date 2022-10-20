@@ -12,10 +12,18 @@ class ProductController extends Controller
         $this->authorizeResource(Product::class, Product::class);
     }
 
-    public function index() {
-        $products = Product::all();
-        return view('products')->with('products', $products);
+    public function index(Request $request) {
+        $search = $request['search'] ?? "";
+        if (isset($request['search'])) {
+            $products = Product::where('title', 'LIKE', '%'.$request['search'].'%');
+        } else {
+            $products = Product::all();
+        }
+        $data = compact('products', 'search');
+        return view('products')->with($data);
     }
+
+
 
 //    public function search(Request $request){
 //        // Get the search value from the request
