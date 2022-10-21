@@ -12,31 +12,23 @@ class ProductController extends Controller
         $this->authorizeResource(Product::class, Product::class);
     }
 
-    public function index(Request $request) {
-        $search = $request['search'] ?? "";
-        if (isset($request['search'])) {
-            $products = Product::where('title', 'LIKE', '%'.$request['search'].'%');
-        } else {
-            $products = Product::all();
-        }
-        $data = compact('products', 'search');
-        return view('products')->with($data);
+    public function index() {
+        $products = Product::all();
+        return view('products')->with('products', $products);
     }
 
+    public function search(Request $request){
+        // Get the search value from the request
+        $search = $request->input('search');
 
+        // Search in the title and body columns from the products table
+        $products = Product::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->get();
 
-//    public function search(Request $request){
-//        // Get the search value from the request
-//        $search = $request->input('search');
-//
-//        // Search in the title and body columns from the posts table
-//        $product = Product::query()
-//            ->where('title', 'LIKE', "%{$search}%")
-//            ->get();
-//
-//        // Return the search view with the results compacted
-//        return view('products', compact('product'));
-//    }
+        // Return the search view with the results compacted
+        return view('products', compact('products'));
+    }
 
 
     public function show($id) {

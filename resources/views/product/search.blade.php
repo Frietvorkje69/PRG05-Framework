@@ -20,6 +20,7 @@
                     </form>
                     <br>
                 </div>
+                <h3>Search Results: </h3>
                 @foreach($products as $product)
                     <div class="card">
                         <div class="card-header"><h1><a href="/products/{{$product->id}}"
