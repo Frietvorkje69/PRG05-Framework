@@ -11,7 +11,7 @@ class UserPolicy
     use HandlesAuthorization;
 
     public function before(User $user){
-        if($user->admin_status === 1){
+        if($user->isAdmin()){
             return Response::allow();
         }
         return;

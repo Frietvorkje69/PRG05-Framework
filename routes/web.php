@@ -24,10 +24,13 @@ Auth::routes();
 
 Route::get('/about', [AboutController::class, 'show'])->name('about');
 Route::resource('/products', ProductController::class)->names('products');
-Route::resource('/users', UserController::class)->names('users');
 Route::resource('/categories', CategoryController::class)->names('categories');
 
 Route::post('products/search', [ProductController::class, 'search'])->name('products.search');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('/users', UserController::class)->names('users');
+});
 
 
 

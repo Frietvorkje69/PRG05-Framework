@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('admin_status')->default(0);
+            $table->enum('role', ['user', 'admin'])->default('user');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('admin_status');
+            $table->dropColumn('role');
         });
     }
 };

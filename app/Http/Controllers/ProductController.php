@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,6 +25,7 @@ class ProductController extends Controller
         // Search in the title and body columns from the products table
         $products = Product::query()
             ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
             ->get();
 
         // Return the search view with the results compacted

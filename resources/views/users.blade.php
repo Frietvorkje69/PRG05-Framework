@@ -1,32 +1,37 @@
 @extends('layouts.app')
 @section('title', 'Users')
 @section('content')
-    @can('view', \App\Models\User::class)
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="mb-4 col-6">
-                    <h2>Admin - Users</h2>
-                    <p>List of registered users.</p>
-                    <table class="table table-responsive table-hover">
-                        <thead>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="mb-4 col-6">
+                <h2>Admin - Users</h2>
+                <p>List of registered users.</p>
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>E-mail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($users as $user)
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>E-mail</th>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                @if(!$user->isAdmin())
+                                    <button class="btn btn-success btn-sm">
+                                        Make Admin
+                                    </button>
+                                @endif
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    @endcan
+    </div>
 @endsection
