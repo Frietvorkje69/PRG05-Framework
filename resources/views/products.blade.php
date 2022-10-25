@@ -32,14 +32,20 @@
                                 </a>
                             @endcan
                             @can ('toggle', $product)
-                                @if ($product->hidden_status === 1)
-                                    <a class="btn btn-secondary" href="{{route('home')}}">
-                                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                    </a>
+                                @if (!$product->hidden_status == 0)
+                                    <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-secondary">
+                                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
                                 @else
-                                    <a class="btn btn-primary" href="{{route('home')}}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
+                                    <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
                                 @endif
                             @endcan
                         </div>

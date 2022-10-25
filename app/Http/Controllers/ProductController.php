@@ -35,7 +35,17 @@ class ProductController extends Controller
 
     public function show($id) {
         $product = Product::find($id);
-        return view('product.show', compact('product'));
+        $creator = User::where('id', '==', $product->user_id);
+
+        return view('product.show', compact('product', 'creator'));
+    }
+
+    public function toggleVisibility(Product $product)
+    {
+        $product->hidden_status == !$product->hidden_status;
+        $product->save();
+
+        return redirect(route('products.index'));
     }
 
     public function create () {
@@ -70,11 +80,13 @@ class ProductController extends Controller
         $validated = $this->validate($request,
             [
                 'id' => 'bail|required|exists:products',
+                'user_id' => 'bail|required|exists:users',
                 'title' => 'bail|required|max:255',
                 'price' => 'bail|required|numeric',
                 'description' => 'nullable'
             ]);
         $product = Product::find($validated['id']);
+        $product = User::find($validated['user_id']);
         $product->title = $validated['title'];
         $product->price = $validated['price'];
         $product->description = $validated['description'];

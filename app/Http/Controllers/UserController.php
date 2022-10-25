@@ -15,8 +15,16 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = auth()->user();
         return view('user.edit', compact('user'));
+    }
+
+    public function makeAdmin(User $user)
+    {
+        $user->role = 'admin';
+        $user->save();
+
+        return redirect(route('users.index'));
     }
 
     public function update(Request $request)
@@ -36,3 +44,4 @@ class UserController extends Controller
         return redirect(route('users.edit', $user->id));
     }
 }
+

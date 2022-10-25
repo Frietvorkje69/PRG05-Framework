@@ -26,10 +26,13 @@ Route::get('/about', [AboutController::class, 'show'])->name('about');
 Route::resource('/products', ProductController::class)->names('products');
 Route::resource('/categories', CategoryController::class)->names('categories');
 
-Route::post('products/search', [ProductController::class, 'search'])->name('products.search');
+Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::post('/products/{product}/toggle-visibility', [ProductController::class, 'toggleVisibility'])->name('products.toggle-visibility');
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/users/profile', [UserController::class, 'edit'])->name('users.edit-profile');
     Route::resource('/users', UserController::class)->names('users');
+    Route::post('/users/{user}/make-admin', [UserController::class, 'makeAdmin'])->name('users.make-admin');
 });
 
 
