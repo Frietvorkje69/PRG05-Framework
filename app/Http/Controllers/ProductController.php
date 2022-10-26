@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(Product::class, Product::class);
-    }
 
     public function index() {
         $products = Product::all();
@@ -35,7 +32,7 @@ class ProductController extends Controller
 
     public function show($id) {
         $product = Product::find($id);
-        $creator = User::where('id', '==', $product->user_id);
+        $creator = User::where('id', '==', '{{$product->user_id}}');
 
         return view('product.show', compact('product', 'creator'));
     }
@@ -49,7 +46,8 @@ class ProductController extends Controller
     }
 
     public function create () {
-        return view('product.create');
+        $categories = Category::all();
+        return view('product.create', compact('categories'));
     }
 
     public function store(Request $request){
@@ -58,21 +56,26 @@ class ProductController extends Controller
         $request->merge($data);
 
         //Validate request
-        $this->validate($request,
+        $validated = $this->validate($request,
             [
                 'title' => 'bail|required|unique:products|max:255',
                 'price' => 'bail|required|numeric',
-                'description' => 'nullable'
+                'description' => 'nullable',
+                'category_id' => 'bail|required',
+                'category_id.*' => 'bail|numeric|min:1|exists:categories,id'
             ]);
         //Add and redirect
-        Product::create($request->all());
+        $product = Product::create($validated);
+        $product->categories()->attach($validated['category_id']);
         return redirect('/products');
     }
 
     public function edit($id)
     {
         $product = Product::find($id);
-        return view('product.edit', compact('product'));
+        $categories = Category::all();
+        $selectedCategories = $product->categories;
+        return view('product.edit', compact('product', 'categories', 'selectedCategories'));
     }
 
     public function update(Request $request)
@@ -80,17 +83,19 @@ class ProductController extends Controller
         $validated = $this->validate($request,
             [
                 'id' => 'bail|required|exists:products',
-                'user_id' => 'bail|required|exists:users',
                 'title' => 'bail|required|max:255',
                 'price' => 'bail|required|numeric',
-                'description' => 'nullable'
+                'description' => 'nullable',
+                'category_id' => 'bail|required',
+                'category_id.*' => 'bail|numeric|min:1|exists:categories,id'
             ]);
         $product = Product::find($validated['id']);
-        $product = User::find($validated['user_id']);
+//        $product->user_id = $validated['user_id'];
         $product->title = $validated['title'];
         $product->price = $validated['price'];
         $product->description = $validated['description'];
         $product->save();
+        $product->categories()->sync($validated['category_id']);
         return redirect(route('products.show', $product->id));
     }
 

@@ -13,7 +13,7 @@ class UserController extends Controller
         return view('users')->with('users', $users);
     }
 
-    public function edit($id)
+    public function edit()
     {
         $user = auth()->user();
         return view('user.edit', compact('user'));

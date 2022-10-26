@@ -26,28 +26,30 @@
                     <div class="card">
                         <div class="card-header"><h1><a href="/products/{{$product->id}}"
                                                         class="link page-link">{{$product->title}}</a></h1>
-                            @can('update', $product)
-                                <a class="btn btn-primary" href="{{route('products.edit', $product->id)}}">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </a>
-                            @endcan
-                            @can ('toggle', $product)
-                                @if (!$product->hidden_status == 0)
-                                    <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-secondary">
-                                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                        </button>
-                                    </form>
-                                @else
-                                    <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </button>
-                                    </form>
-                                @endif
-                            @endcan
+                            <div class="row row-cols-auto">
+                                @can('update', $product)
+                                    <a class="btn btn-primary" href="{{route('products.edit', $product->id)}}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                @endcan
+                                @can ('toggle', $product)
+                                    @if (!$product->hidden_status == 0)
+                                        <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-secondary">
+                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endcan
+                            </div>
                         </div>
                         <div class="card-body">
                             <p>{{$product->description}}</p>

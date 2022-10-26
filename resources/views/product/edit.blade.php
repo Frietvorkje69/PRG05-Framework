@@ -48,6 +48,26 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <br>
+                            <div>
+                                Categories:
+                                @foreach($categories as $category)
+                                    @if($product->categories->contains($category->id))
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="flexCheckChecked">{{$category->name}}</label>
+                                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="category_id[]" value="{{$category->id}}" checked>
+                                        </div>
+                                    @else
+                                        <div class="form-check">
+                                            <label class="form-check-label" for="flexCheckDefault">{{$category->name}}</label>
+                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="category_id[]" value="{{$category->id}}">
+                                        </div>
+                                    @endif
+                                @endforeach
+                                @error("category_id[]")
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <br>
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
