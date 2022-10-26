@@ -33,21 +33,16 @@
                                     </a>
                                 @endcan
                                 @can ('toggle', $product)
-                                    @if (!$product->hidden_status == 0)
                                         <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-secondary">
-                                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                @if ($product->hidden_status != 0)
+                                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                                                @else
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                @endif
                                             </button>
                                         </form>
-                                    @else
-                                        <form action="{{ route('products.toggle-visibility', $product->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </button>
-                                        </form>
-                                    @endif
                                 @endcan
                             </div>
                         </div>

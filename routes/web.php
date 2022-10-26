@@ -30,15 +30,18 @@ Route::get('/users/profile', [UserController::class, 'edit'])->name('users.edit-
 //Products (Public)
 Route::resource('/products', ProductController::class)->names('products');
 Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
-Route::post('/products/{product}/toggle-visibility', [ProductController::class, 'toggleVisibility'])->name('products.toggle-visibility');
 
 //Categories (Public)
 Route::resource('/categories', CategoryController::class)->names('categories');
 
 //Admin routes
 Route::middleware(['auth', 'admin'])->group(function () {
+    //Users (Admin)
     Route::resource('/users', UserController::class)->names('users');
     Route::post('/users/{user}/make-admin', [UserController::class, 'makeAdmin'])->name('users.make-admin');
+
+    //Products (Admin)
+    Route::post('/products/{product}/toggle-visibility', [ProductController::class, 'toggleVisibility'])->name('products.toggle-visibility');
 });
 
 

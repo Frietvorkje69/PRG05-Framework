@@ -37,9 +37,10 @@ class ProductController extends Controller
         return view('product.show', compact('product', 'creator'));
     }
 
-    public function toggleVisibility(Product $product)
+    public function toggleVisibility($id)
     {
-        $product->hidden_status == !$product->hidden_status;
+        $product = Product::find($id);
+        $product->hidden_status = !$product->hidden_status;
         $product->save();
 
         return redirect(route('products.index'));
@@ -105,7 +106,7 @@ class ProductController extends Controller
             [
                 'id' => 'bail|required|exists:products'
             ]);
-        Product::destroy($validated['id']);
+        Product::destroy($validated);
         return redirect('/products');
     }
 
