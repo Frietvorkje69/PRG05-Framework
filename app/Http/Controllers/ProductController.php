@@ -10,12 +10,14 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         $products = Product::all();
         return view('products')->with('products', $products);
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         // Get the search value from the request
         $search = $request->input('search');
 
@@ -30,7 +32,8 @@ class ProductController extends Controller
     }
 
 
-    public function show($id) {
+    public function show($id)
+    {
         $product = Product::find($id);
         $user = User::where('id', '==', $product->user_id);
 
@@ -42,16 +45,19 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->hidden_status = !$product->hidden_status;
         $product->save();
+        session()->flash('alert', 'Successfully toggled a product!');
 
         return redirect(route('products.index'));
     }
 
-    public function create () {
+    public function create()
+    {
         $categories = Category::all();
         return view('product.create', compact('categories'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         //Merge request to data
         $data = $request->all();
         $request->merge($data);
@@ -59,7 +65,7 @@ class ProductController extends Controller
         //Validate request
         $validated = $this->validate($request,
             [
-                'title' => 'bail|required|unique:products|max:255',
+                'title' => 'bail|required|max:255',
                 'price' => 'bail|required|numeric',
                 'description' => 'nullable',
                 'category_id' => 'bail|required',

@@ -30,7 +30,7 @@
                             <br>
                             <div class="row">
                                 <div class="mb-4">
-                                    <label for="price">Price: </label>
+                                    <label for="price">Price (in €): </label>
                                     <input id="price"
                                            name="price"
                                            type="number"

@@ -12,15 +12,17 @@
                 <form action="{{ route('products.toggle-visibility', $product->id) }}"
                       method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-secondary">
                         @if ($product->hidden_status == 1)
                             {{--Show slashed out eye icon if the product is hidden--}}
+                            <button type="submit" class="btn btn-secondary">
                             <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </button>
                         @else
                             {{--Show eye icon if the product is visible--}}
+                        <button type="submit" class="btn btn-success">
                             <i class="fa fa-eye" aria-hidden="true"></i>
+                        </button>
                         @endif
-                    </button>
                 </form>
             @endcan
         </div>
@@ -31,7 +33,7 @@
             <h3>
                 @foreach($product->categories as $category)
                     {{--Show categories linked to product--}}
-                    <btn class="btn btn-primary"><a class="link page-link text-white"
+                    <btn class="btn btn-dark"><a class="link page-link text-white"
                                                     href="/categories/{{$category->id}}">{{$category->name}}</a>
                     </btn>
                     @if($product->categories->count() > 1)

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-secondary">
+                    <div class="card-header text-bg-primary">
                         <h1>Edit product</h1>
                     </div>
                     <div class="card-body">
@@ -26,7 +26,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                             <br>
-                            <label for="price">Price: </label>
+                            <label for="price">Price (in €): </label>
                             <input id="price"
                                    name="price"
                                    type="number"

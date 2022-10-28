@@ -32,6 +32,9 @@ class ProductPolicy
 
     public function create(User $user): Response
     {
+        if($user->isVerified()){
+            return Response::allow();
+        }
         return Response::denyAsNotFound();
     }
 

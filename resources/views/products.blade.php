@@ -4,10 +4,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="mb-4 col-6">
+                @if (session('alert'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('alert') }}
+                    </div>
+                @endif
                 <h2>List of Products</h2>
                 <div>
                     @can('create', \App\Models\Product::class)
-                        <btn class="btn btn-info"><a href="{{route('products.create')}}" class="link page-link">Add new
+                        <btn class="btn btn-info text-bg-info"><a href="{{route('products.create')}}"
+                                                                  class="link page-link">Add new
                                 product</a></btn>
                     @endcan
                 </div>

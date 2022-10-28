@@ -4,13 +4,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @if (session('alert'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('alert') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header bg-primary">
                         <h1>Edit Profile</h1>
                     </div>
                     <div class="card-body">
                         <form action="/users/{{$user->id}}" method="POST">
-                            @method('PUT')
                             @csrf
                             <input id="id"
                                    name="id"
@@ -77,7 +81,8 @@
                             <h1>Delete account</h1>
                         </div>
                         <div class="card-body">
-                            <h5>Are you sure you want to delete your account, {{$user->name}}? We will miss you.. :(</h5>
+                            <h5>Are you sure you want to delete your account, {{$user->name}}? We will miss you..
+                                :(</h5>
                             <br>
                             <form action="{{route('users.destroy', $user->id)}}" method="POST">
                                 @method('DELETE')

@@ -5,9 +5,9 @@
         <div class="row justify-content-center">
             <div class="mb-4 col-6">
                 {{--Show message if user is successfully made admin.--}}
-                @if (session('success'))
+                @if (session('alert'))
                     <div class="alert alert-success" role="alert">
-                        {{ session('success') }}
+                        {{ session('alert') }}
                     </div>
                 @endif
                 <h2>Admin - Users</h2>

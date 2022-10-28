@@ -25,7 +25,10 @@ Auth::routes();
 Route::get('/about', [AboutController::class, 'show'])->name('about');
 
 //Users (Public)
-Route::get('/users/profile', [UserController::class, 'edit'])->name('users.edit-profile');
+Route::get('/users/profile', [UserController::class, 'edit'])->name('users.edit');
+Route::post('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+Route::post('/users/{user}/verify', [UserController::class, 'verifyUser'])->name('users.verify-user');
 
 //Products (Public)
 Route::resource('/products', ProductController::class)->names('products');
@@ -37,7 +40,7 @@ Route::resource('/categories', CategoryController::class)->names('categories');
 //Admin routes
 Route::middleware(['auth', 'admin'])->group(function () {
     //Users (Admin)
-    Route::resource('/users', UserController::class)->names('users');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::post('/users/{user}/make-admin', [UserController::class, 'makeAdmin'])->name('users.make-admin');
 
     //Products (Admin)

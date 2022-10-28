@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-secondary">
+                    <div class="card-header text-bg-dark">
                         <h1>Edit category</h1>
                     </div>
                     <div class="card-body">
@@ -53,7 +53,7 @@
                 <br>
                 @can('delete', $category)
                     <div class="card">
-                        <div class="card-header bg-warning">
+                        <div class="card-header text-bg-warning">
                             <h1>Delete product</h1>
                         </div>
                         <div class="card-body">

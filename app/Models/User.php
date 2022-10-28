@@ -37,6 +37,10 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function isVerified(){
+        return $this->verified_status === 1;
+    }
+
     /**
      * The attributes that should be cast.
      *

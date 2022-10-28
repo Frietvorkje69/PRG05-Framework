@@ -5,17 +5,35 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @include('partials.verify-hero')
                 <div class="card">
-                    <div class="card-header bg-primary"><h1>{{$product->title}}</h1></div>
+                    <div class="card-header text-bg-primary"><h1>{{$product->title}}</h1></div>
                     <div class="card-body">
-                        <h3><bold>Price: </bold>€{{$product->price}}</h3>
+                        <h3>
+                            <bold>Price:</bold>
+                            €{{$product->price}}</h3>
                         <h3>Uploaded by: {{$product->user_id}}</h3>
                         <h3>Description:</h3>
                         <p>{{$product->description}}</p>
+                        <h3>
+                            @foreach($product->categories as $category)
+                                {{--Show categories linked to product--}}
+                                <btn class="btn btn-dark btn-lg"><a class="link page-link text-white"
+                                                                    href="/categories/{{$category->id}}">{{$category->name}}</a>
+                                </btn>
+                                @if($product->categories->count() > 1)
+                                    {{--If there are multiple categories, add space in between.--}}
+                                @endif
+                            @endforeach
+                        </h3>
                     </div>
                 </div>
                 <br>
-                <p><a href="/products">Return to products</a></p>
+                <div>
+                    <btn class="btn btn-primary"><a href="{{route('products.index')}}" class="link page-link"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </a></btn>
+                </div>
             </div>
         </div>
     </div>
