@@ -39,16 +39,18 @@
                     <div>
                         <a class="nav-link" href="{{ url('/products') }}">Products</a>
                     </div>
-{{--                    @if (auth()->user()->isAdmin())--}}
+                    @if(auth()->guest())
+                    @elseif (auth()->user()->isAdmin())
                         <div>
                             <a class="nav-link" href="{{ url('/users') }}">Users</a>
                         </div>
-{{--                    @else--}}
-
-{{--                    @endif--}}
-                    <div>
-                        <a class="nav-link" href="{{ url('/categories') }}">Categories</a>
-                    </div>
+                    @endif
+                    @if(auth()->guest())
+                    @elseif (auth()->user())
+                        <div>
+                            <a class="nav-link" href="{{ url('/categories') }}">Categories</a>
+                        </div>
+                    @endif
                     <div>
                         <a class="nav-link" href="{{ url('/about') }}">About</a>
                     </div>

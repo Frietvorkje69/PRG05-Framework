@@ -77,7 +77,7 @@
                             <h1>Delete account</h1>
                         </div>
                         <div class="card-body">
-                            <h5>Are you sure you want to delete your account, {{$user->name}}?</h5>
+                            <h5>Are you sure you want to delete your account, {{$user->name}}? We will miss you.. :(</h5>
                             <br>
                             <form action="{{route('users.destroy', $user->id)}}" method="POST">
                                 @method('DELETE')
