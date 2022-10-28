@@ -23,6 +23,7 @@ class UserController extends Controller
     {
         $user->role = 'admin';
         $user->save();
+        session()->flash('success', 'User successfully made administrator.');
 
         return redirect(route('users.index'));
     }

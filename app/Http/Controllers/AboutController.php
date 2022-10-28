@@ -8,8 +8,8 @@ class AboutController extends Controller
 {
     public function show()
     {
-        $title = "Dit is een titel.";
-        $text = "Dit is een stukje test.";
+        $title = "What's all this then?";
+        $text = "Well, this site has various products.";
         return view('about', compact('title', 'text'));
     }
 }

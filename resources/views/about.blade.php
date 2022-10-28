@@ -7,10 +7,9 @@
                 <div class="card">
                     <div class="card-header">About</div>
                     <div class="card-body">
-                        @include('partials.header-hero', ['heroText' => 'Luke'])
-                        <h1>{{$title}}</h1>
+                        <h2>{{$title}}</h2>
                         <p>{{$text}}</p>
-                        <a href="{{route('home')}}">Home</a>
+                        @include('partials.header-hero', ['heroText' => 'Our Proud Owner: '])
                     </div>
                 </div>
             </div>

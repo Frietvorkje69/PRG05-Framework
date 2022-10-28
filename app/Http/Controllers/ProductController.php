@@ -32,9 +32,9 @@ class ProductController extends Controller
 
     public function show($id) {
         $product = Product::find($id);
-        $creator = User::where('id', '==', '{{$product->user_id}}');
+        $user = User::where('id', '==', $product->user_id);
 
-        return view('product.show', compact('product', 'creator'));
+        return view('product.show', compact('product', 'user'));
     }
 
     public function toggleVisibility($id)

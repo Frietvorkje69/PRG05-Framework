@@ -57,6 +57,17 @@
                             <br>
                             <input class="btn btn-primary" type="submit" value="Save changes">
                         </form>
+                        <br>
+                        <div>
+                            Verification:
+                            @if($user->verified_status == 1)
+                                <p>Yay, your account is verified!</p>
+                            @else
+                                <p>It looks like your account isn't verified yet.
+                                    <a href="/home">How to verify my account?</a>
+                                </p>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -66,16 +77,16 @@
                             <h1>Delete account</h1>
                         </div>
                         <div class="card-body">
-                            <h5>Are you sure you want to delete your account?</h5>
+                            <h5>Are you sure you want to delete your account, {{$user->name}}?</h5>
                             <br>
-                            <form action="{{route('categories.destroy', $user->id)}}" method="POST">
+                            <form action="{{route('users.destroy', $user->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <input id="id"
                                        name="id"
                                        type="hidden"
                                        value="{{$user->id}}">
-                                <input type="submit" value="Yes, I'm sure" class="btn btn-warning" >
+                                <input type="submit" value="Yes, I'm sure" class="btn btn-warning">
                             </form>
                         </div>
                     </div>
