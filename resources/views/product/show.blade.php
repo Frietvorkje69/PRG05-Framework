@@ -30,7 +30,7 @@
                 </div>
                 <br>
                 <div>
-                    <btn class="btn btn-primary"><a href="{{route('products.index')}}" class="link page-link"><i
+                    <btn class="btn btn-primary"><a href="{{url()->previous()}}" class="link page-link"><i
                                 class="fa fa-arrow-left" aria-hidden="true"></i>
                         </a></btn>
                 </div>

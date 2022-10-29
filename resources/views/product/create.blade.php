@@ -57,13 +57,23 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div>
+                                    <input
+                                        id="user_id"
+                                        name="user_id"
+                                        type="hidden"
+                                        value="{{Auth::user()->id}}"
+                                    >
+                                </div>
                             </div>
                             <div>
                                 Categories:
                                 @foreach($categories as $category)
                                     <div class="form-check">
-                                        <label class="form-check-label" for="flexCheckDefault">{{$category->name}}</label>
-                                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="category_id[]" value="{{$category->id}}">
+                                        <label class="form-check-label"
+                                               for="flexCheckDefault">{{$category->name}}</label>
+                                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                                               name="category_id[]" value="{{$category->id}}">
                                     </div>
                                 @endforeach
                                 @error("category_id[]")

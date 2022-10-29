@@ -37,6 +37,10 @@ Route::post('/products/search', [ProductController::class, 'search'])->name('pro
 //Categories (Public)
 Route::resource('/categories', CategoryController::class)->names('categories');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/products/create', [ProductController::class, 'create'])->name('products.create');
+});
+
 //Admin routes
 Route::middleware(['auth', 'admin'])->group(function () {
     //Users (Admin)

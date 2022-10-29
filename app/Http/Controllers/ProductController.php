@@ -68,12 +68,14 @@ class ProductController extends Controller
                 'title' => 'bail|required|max:255',
                 'price' => 'bail|required|numeric',
                 'description' => 'nullable',
+                'user_id' => 'bail|required|exists:users,id',
                 'category_id' => 'bail|required',
                 'category_id.*' => 'bail|numeric|min:1|exists:categories,id'
             ]);
         //Add and redirect
         $product = Product::create($validated);
         $product->categories()->attach($validated['category_id']);
+        session()->flash('alert', 'Product successfully added.');
         return redirect('/products');
     }
 
@@ -97,7 +99,6 @@ class ProductController extends Controller
                 'category_id.*' => 'bail|numeric|min:1|exists:categories,id'
             ]);
         $product = Product::find($validated['id']);
-//        $product->user_id = $validated['user_id'];
         $product->title = $validated['title'];
         $product->price = $validated['price'];
         $product->description = $validated['description'];
@@ -113,6 +114,7 @@ class ProductController extends Controller
                 'id' => 'bail|required|exists:products'
             ]);
         Product::destroy($validated);
+        session()->flash('alert', 'Product successfully deleted.');
         return redirect('/products');
     }
 

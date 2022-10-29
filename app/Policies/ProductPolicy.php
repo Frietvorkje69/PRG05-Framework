@@ -41,11 +41,17 @@ class ProductPolicy
 
     public function update(User $user): Response
     {
+        if($user->isVerified()){
+            return Response::allow();
+        }
         return Response::denyAsNotFound();
     }
 
     public function delete(User $user): Response
     {
+        if($user->isVerified()){
+            return Response::allow();
+        }
         return Response::denyAsNotFound();
     }
 
