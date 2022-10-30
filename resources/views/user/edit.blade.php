@@ -10,7 +10,7 @@
                     </div>
                 @endif
                 <div class="card">
-                    <div class="card-header bg-primary">
+                    <div class="card-header text-bg-primary">
                         <h1>Edit Profile</h1>
                     </div>
                     <div class="card-body">

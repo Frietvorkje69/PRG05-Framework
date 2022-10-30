@@ -9,7 +9,7 @@ class AboutController extends Controller
     public function show()
     {
         $title = "What's all this then?";
-        $text = "Well, this site has various products.";
+        $text = "Well, this site has various manga.";
         return view('about', compact('title', 'text'));
     }
 }
