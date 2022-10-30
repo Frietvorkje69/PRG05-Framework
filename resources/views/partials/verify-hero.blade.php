@@ -1,7 +1,6 @@
 @if(session()->exists('productsSeen'))
     @php
         $i = session()->get('productsSeen');
-        error_log($i);
         $i ++;
         session()->put('productsSeen', $i)
     @endphp

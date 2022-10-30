@@ -52,7 +52,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <div class="mb4">
+                            <div class="justify-content-center row row-cols-auto">
                                 <input type="submit" value="Add" class="btn btn-primary">
                             </div>
                         </form>

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') - Library</title>
+    <title>@yield('title') - MangaPedia</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                Library
+                MangaPedia
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -37,7 +37,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
                     <div>
-                        <a class="nav-link" href="{{ url('/products') }}">Products</a>
+                        <a class="nav-link" href="{{ url('/manga') }}">Manga</a>
                     </div>
                     @if(auth()->guest())
                     @elseif (auth()->user()->isAdmin())

@@ -31,14 +31,13 @@ Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])->name(
 Route::post('/users/{user}/verify', [UserController::class, 'verifyUser'])->name('users.verify-user');
 
 //Products (Public)
-Route::resource('/products', ProductController::class)->names('products');
-Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::resource('/manga', ProductController::class)->names('products');
+Route::post('/manga/search', [ProductController::class, 'search'])->name('products.search');
 
 //Categories (Public)
 Route::resource('/categories', CategoryController::class)->names('categories');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/products/create', [ProductController::class, 'create'])->name('products.create');
 });
 
 //Admin routes
@@ -48,7 +47,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/users/{user}/make-admin', [UserController::class, 'makeAdmin'])->name('users.make-admin');
 
     //Products (Admin)
-    Route::post('/products/{product}/toggle-visibility', [ProductController::class, 'toggleVisibility'])->name('products.toggle-visibility');
+    Route::post('/manga/{product}/toggle-visibility', [ProductController::class, 'toggleVisibility'])->name('products.toggle-visibility');
 });
 
 

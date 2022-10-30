@@ -1,103 +1,108 @@
 @extends('layouts.app')
-@section('title', 'Add Product')
+@section('title', 'Add Manga')
 @section('content')
-    {{-- Create a new product.--}}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="mb-4 col-6">
-                <div class="card">
-                    <div class="card-header bg-info">
-                        <h2>Add a new product</h2>
-                    </div>
-                    <div class="card-body">
+    @if(auth()->user()->isVerified() || auth()->user()->isAdmin())
+        {{-- Create a new product.--}}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="mb-4 col-6">
+                    <div class="card">
+                        <div class="card-header bg-info">
+                            <h2>Add a new manga</h2>
+                        </div>
+                        <div class="card-body">
 
-                        <form action="/products" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="mb-4">
-                                    <label for="title" class="form-label">Title: </label>
-                                    <input id="title"
-                                           name="title"
-                                           type="text"
-                                           value="{{old("title")}}"
-                                           placeholder="EG: A gigantic apple pie."
-                                           class="input-group input-group-text @error("title") is-invalid @enderror">
-                                    @error('title')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                            <form action="/products" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="mb-4">
+                                        <label for="title" class="form-label">Title: </label>
+                                        <input id="title"
+                                               name="title"
+                                               type="text"
+                                               value="{{old("title")}}"
+                                               placeholder="EG: Attack on Titan"
+                                               class="input-group input-group-text @error("title") is-invalid @enderror">
+                                        @error('title')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="mb-4">
-                                    <label for="price">Price (in €): </label>
-                                    <input id="price"
-                                           name="price"
-                                           type="number"
-                                           min="0.0"
-                                           step="0.01"
-                                           placeholder="EG: 13."
-                                           class="input-group input-group-text @error("price") is-invalid @enderror">
-                                    @error("price")
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <br>
+                                <div class="row">
+                                    <div class="mb-4">
+                                        <label for="price">Price (in €): </label>
+                                        <input id="price"
+                                               name="price"
+                                               type="number"
+                                               min="0.0"
+                                               step="0.01"
+                                               placeholder="EG: 20"
+                                               class="input-group input-group-text @error("price") is-invalid @enderror">
+                                        @error("price")
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="mb-4">
-                                    <label for="description" class="form-label">Description: </label>
-                                    <input id="description"
-                                           name="description"
-                                           type="text"
-                                           value="{{old("description")}}"
-                                           placeholder="EG: It's very big and pie-y."
-                                           class="input-group input-group-text @error("description") is-invalid @enderror">
-                                    @error("description")
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <br>
+                                <div class="row">
+                                    <div class="mb-4">
+                                        <label for="description" class="form-label">Description: </label>
+                                        <input id="description"
+                                               name="description"
+                                               type="text"
+                                               value="{{old("description")}}"
+                                               placeholder="EG: The walls have fallen."
+                                               class="input-group input-group-text @error("description") is-invalid @enderror">
+                                        @error("description")
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        <input
+                                            id="user_id"
+                                            name="user_id"
+                                            type="hidden"
+                                            value="{{Auth::user()->id}}"
+                                        >
+                                    </div>
                                 </div>
                                 <div>
-                                    <input
-                                        id="user_id"
-                                        name="user_id"
-                                        type="hidden"
-                                        value="{{Auth::user()->id}}"
-                                    >
+                                    Categories:
+                                    @foreach($categories as $category)
+                                        <div class="form-check">
+                                            <label class="form-check-label"
+                                                   for="flexCheckDefault">{{$category->name}}</label>
+                                            <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                                                   name="category_id[]" value="{{$category->id}}">
+                                        </div>
+                                    @endforeach
+                                    @error("category_id[]")
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div>
-                                Categories:
-                                @foreach($categories as $category)
-                                    <div class="form-check">
-                                        <label class="form-check-label"
-                                               for="flexCheckDefault">{{$category->name}}</label>
-                                        <input class="form-check-input" type="checkbox" id="flexCheckDefault"
-                                               name="category_id[]" value="{{$category->id}}">
+                                <br>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
-                                @endforeach
-                                @error("category_id[]")
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <br>
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                                @endif
+                                <div class="justify-content-center row row-cols-auto">
+                                    <input type="submit" value="Add" class="btn btn-primary">
                                 </div>
-                            @endif
-                            <div class="mb4">
-                                <input type="submit" value="Add product" class="btn btn-primary">
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+    @else
+                <meta http-equiv="Refresh" content="0; url='/404'" />
+    @endif
+
 @endsection
 
 

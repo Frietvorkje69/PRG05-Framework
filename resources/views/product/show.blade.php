@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Product')
+@section('title', 'Manga - View')
 {{-- Show product.--}}
 @section('content')
     <div class="container">
@@ -9,11 +9,10 @@
                 <div class="card">
                     <div class="card-header text-bg-primary"><h1>{{$product->title}}</h1></div>
                     <div class="card-body">
-                        <h3>
-                            <bold>Price:</bold>
-                            €{{$product->price}}</h3>
-                        <h3>Uploaded by: {{$product->user_id}}</h3>
+                        <h3>Price: €{{$product->price}}</h3>
+                        <h3>Volumes: {{$product->price / 10}}</h3>
                         <h3>Description:</h3>
+
                         <p>{{$product->description}}</p>
                         <h3>
                             @foreach($product->categories as $category)
@@ -30,7 +29,7 @@
                 </div>
                 <br>
                 <div>
-                    <btn class="btn btn-primary"><a href="{{url()->previous()}}" class="link page-link"><i
+                    <btn class="btn btn-primary"><a href="{{route('products.index')}}" class="link page-link"><i
                                 class="fa fa-arrow-left" aria-hidden="true"></i>
                         </a></btn>
                 </div>

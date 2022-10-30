@@ -87,6 +87,7 @@
                             <form action="{{route('users.destroy', $user->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
+
                                 <input id="id"
                                        name="id"
                                        type="hidden"

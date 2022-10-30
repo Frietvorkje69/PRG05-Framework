@@ -46,7 +46,9 @@
                                 </div>
                             @endif
                             <br>
-                            <input class="btn btn-primary" type="submit" value="Save changes">
+                            <div class="justify-content-center row row-cols-auto">
+                                <input class="btn btn-primary" type="submit" value="Save changes">
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -62,11 +64,13 @@
                             <form action="{{route('categories.destroy', $category->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <input id="id"
-                                       name="id"
-                                       type="hidden"
-                                       value="{{$category->id}}">
-                                <input type="submit" value="Yes, I'm sure" class="btn btn-warning" >
+                                <div class="justify-content-center row row-cols-auto">
+                                    <input id="id"
+                                           name="id"
+                                           type="hidden"
+                                           value="{{$category->id}}">
+                                    <input type="submit" value="Yes, I'm sure" class="btn btn-warning">
+                                </div>
                             </form>
                         </div>
                     </div>

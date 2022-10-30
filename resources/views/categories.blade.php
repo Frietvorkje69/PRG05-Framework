@@ -23,12 +23,14 @@
                             <div class="card-header text-bg-dark"><h1><a class="link page-link"
                                                                          href="/categories/{{$category->id}}">{{$category->name}}</a>
                                 </h1>
-                                @can('update', $category)
-                                    <a class="btn btn-secondary btn-outline-light"
-                                       href="/categories/{{$category->id}}/edit">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </a>
-                                @endcan
+                                <div class="justify-content-end row row-cols-auto">
+                                    @can('update', $category)
+                                        <a class="btn btn-secondary btn-outline-light"
+                                           href="/categories/{{$category->id}}/edit">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    @endcan
+                                </div>
                             </div>
                             <div class="card-body">
                                 <p>{{$category->description}}</p>

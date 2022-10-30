@@ -13,31 +13,54 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products')->with('products', $products);
+        $categories = Category::all();
+        return view('products', compact('products', 'categories'));
     }
 
     public function search(Request $request)
     {
+        $categories = Category::all();
         // Get the search value from the request
         $search = $request->input('search');
+        $searchCategories = $request->input('searchCategory');
+        $products = null;
 
         // Search in the title and body columns from the products table
-        $products = Product::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('description', 'LIKE', "%{$search}%")
-            ->get();
+        if (!$search == null) {
+            $products = Product::query()
+                ->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%")
+                ->get();
+        }
+
+        if (!$searchCategories == null) {
+            $i = 0;
+            foreach ($searchCategories as $searchCategory)
+                if ($i === 0) {
+                    $i++;
+                    $products = Product::query()
+                        ->where('title', 'LIKE', "%{$search}%")
+                        ->whereRelation('categories', 'categories.id', 'LIKE', "%{$searchCategory}%")
+                        ->get();
+                } elseif ($i > 0) {
+                    $products = Product::query()
+                        ->where('title', 'LIKE', "%{$search}%")
+                        ->WhereRelation('categories', 'categories.id', 'LIKE', "%{$searchCategory}%")
+                        ->get();
+                }
+
+        }
 
         // Return the search view with the results compacted
-        return view('products', compact('products'));
+        return view('products', compact('products', 'categories'));
     }
 
 
     public function show($id)
     {
         $product = Product::find($id);
-        $user = User::where('id', '==', $product->user_id);
 
-        return view('product.show', compact('product', 'user'));
+        return view('product.show', compact('product'));
     }
 
     public function toggleVisibility($id)
