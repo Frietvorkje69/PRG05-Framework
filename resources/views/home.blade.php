@@ -18,7 +18,7 @@
                         <br>
                         <h2>Verification</h2>
                         <p>To add manga to the site the user must be verified. For one to verify themselves they need
-                            to view at least <a href="/products">two manga</a> on this site. After that the user will
+                            to view at least <a href="/manga">two manga</a> on this site. After that the user will
                             be able to add and edit
                             their own manga. A user can check their verification status at any moment on their profile in the dropdown menu.</p>
                         <br>
