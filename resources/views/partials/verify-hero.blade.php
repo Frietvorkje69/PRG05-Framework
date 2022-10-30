@@ -8,7 +8,7 @@
     @if($i >= 2 and !Auth::user()->verified_status)
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Amazing news!</h4>
-            <p>You've viewed two products so we can now complete your verification process!</p>
+            <p>You've viewed two manga so we at MangaPedia are pleased to announce that we can now complete your verification process!</p>
             <hr>
             <btn class="btn btn-success" href="{{ route('users.verify-user', Auth::id()) }}"
                onclick="event.preventDefault();document.getElementById('verification').submit();">Click here to
