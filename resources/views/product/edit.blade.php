@@ -10,7 +10,7 @@
                             <h1>Edit manga</h1>
                         </div>
                         <div class="card-body">
-                            <form action="/products/{{$product->id}}" method="POST">
+                            <form action="/manga/{{$product->id}}" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <input id="id"

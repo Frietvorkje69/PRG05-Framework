@@ -99,7 +99,7 @@ class ProductController extends Controller
         $product = Product::create($validated);
         $product->categories()->attach($validated['category_id']);
         session()->flash('alert', 'Product successfully added.');
-        return redirect('/products');
+        return redirect('/manga');
     }
 
     public function edit($id)
@@ -138,7 +138,7 @@ class ProductController extends Controller
             ]);
         Product::destroy($validated);
         session()->flash('alert', 'Product successfully deleted.');
-        return redirect('/products');
+        return redirect('/manga');
     }
 
 }

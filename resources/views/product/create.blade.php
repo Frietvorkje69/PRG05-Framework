@@ -12,7 +12,7 @@
                         </div>
                         <div class="card-body">
 
-                            <form action="/products" method="POST">
+                            <form action="/manga" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="mb-4">
