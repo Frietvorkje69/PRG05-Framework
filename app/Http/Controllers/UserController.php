@@ -25,7 +25,7 @@ class UserController extends Controller
         $user->save();
         session()->flash('alert', 'User successfully made administrator.');
 
-        return redirect(route('users.index'));
+        return redirect(route('users'));
     }
 
     public function verifyUser(User $user)
